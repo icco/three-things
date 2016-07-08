@@ -1,5 +1,5 @@
 require "three-things/version"
+require "three-things/middleware"
 
 module ThreeThings
-  # Your code goes here...
 end
