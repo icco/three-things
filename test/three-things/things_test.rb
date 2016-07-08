@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class Three::ThingsTest < Minitest::Test
+class ThreeThingsTest < Minitest::Test
   def test_that_it_has_a_version_number
-    refute_nil ::Three::Things::VERSION
+    refute_nil ::ThreeThings::VERSION
   end
 
   def test_it_does_something_useful
