@@ -28,7 +28,7 @@ module ThreeThings
 
       # Request errors
       if status > 308
-        @statsd.increment path("request.error") {status_code: status}
+        @statsd.increment path("request.error"), {status_code: status}
       end
 
       [status, headers, body]
