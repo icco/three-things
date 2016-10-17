@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class MiddlewareTest < Minitest::Test
   include ::Rack::Test::Methods
@@ -9,20 +9,20 @@ class MiddlewareTest < Minitest::Test
   end
 
   def app
-    statsd = Statsd.new('localhost', 8125)
+    statsd = Statsd.new("localhost", 8125)
 
-    main_app = lambda { |env|
+    main_app = lambda do |env|
       request = Rack::Request.new(env)
       return_code, body_text =
         case request.path
-        when '/' then [200,'Hello world']
-        when '/error'
-            [501,'']
+        when "/" then [200, "Hello world"]
+        when "/error"
+          [501, ""]
         else
-          [404,'Nothing here']
+          [404, "Nothing here"]
         end
-      [return_code,{'Content-type' => 'text/plain'}, [body_text]]
-    }
+      [return_code, { "Content-type" => "text/plain" }, [body_text]]
+    end
 
     builder = Rack::Builder.new
     builder.use ThreeThings::Middleware, statsd

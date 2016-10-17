@@ -1,6 +1,6 @@
 module ThreeThings
   class Middleware
-    def initialize app, statsd, prefix = ""
+    def initialize(app, statsd, prefix = "")
       @app = app
       @statsd = statsd
 
@@ -9,15 +9,15 @@ module ThreeThings
       @prefix = prefix
     end
 
-    def path postfix
+    def path(postfix)
       if @prefix != ""
-        return "#{@prefix}.#{postfix}"
+        "#{@prefix}.#{postfix}"
       else
-        return postfix
+        postfix
       end
     end
 
-    def call env
+    def call(env)
       req = Rack::Request.new(env)
 
       # Request count
