@@ -21,16 +21,16 @@ module ThreeThings
       req = Rack::Request.new(env)
 
       # Request count
-      @statsd.increment path("request.count"), {path: req.path}
+      @statsd.increment path("request.count"), tags: ["path:#{req.path}"]
 
       # Reqest time
-      status, headers, body = @statsd.time path("request.time"), {path: req.path} do
+      status, headers, body = @statsd.time path("request.time"), tags: ["path:#{req.path}"] do
         @app.call env
       end
 
       # Request errors
       if status > 308
-        @statsd.increment path("request.error"), {status_code: status, path: req.path}
+        @statsd.increment path("request.error"), tags: ["status_code:#{status}", "path:#{req.path}"]
       end
 
       [status, headers, body]
