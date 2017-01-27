@@ -24,7 +24,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+def statsd
+  Statsd.new("localhost", 8125).tap { |sd| sd.namespace = "app.prefix" }
+end
+
+class App < Sinatra::Base
+  use ThreeThings::Middleware, statsd
+  
+  get '/' do
+    "ok"
+  end
+end
+```
 
 ## Development
 
