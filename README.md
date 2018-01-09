@@ -1,5 +1,7 @@
 # ThreeThings
 
+[![Gem Version](https://badge.fury.io/rb/three-things.svg)](https://badge.fury.io/rb/three-things)
+
 ThreeThings is a middleware for monitoring the classic three things web apis want to know about:
 
  - request rate
